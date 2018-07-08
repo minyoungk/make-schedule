@@ -1,0 +1,47 @@
+.input_wrap{
+    margin-bottom: 10px;
+}
+
+.input_title{
+    display: inline-block;
+    width: 15%;
+    font-weight: bold;
+    vertical-align: top;
+}
+
+.input_select{
+    width:84%;
+    display: inline-block;
+}
+
+.top_message {
+    font-size: 12px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.schedule{
+    border : 1px solid #c1c1c1;
+    width : 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    font-size: 14px;
+    text-align: center;
+}
+
+.schedule th {
+    padding: 10px;
+    font-size: 12px;
+    background: #ededed;
+}
+
+.schedule tr td {
+    padding: 10px;
+    border: 1px solid #c1c1c1;
+}
+
+.paging_wrap {
+    text-align: center;
+    margin-top: 10px;
+}
+

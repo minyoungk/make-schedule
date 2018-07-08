@@ -2,23 +2,34 @@
     <div style="width:600px; margin:0 auto">
         <h1 style="text-align:center;">시간표 자동 생성</h1>
 
-        학과 선택 : <v-select v-model="major_selected" :options="major_options" :on-change="changedMajorValue" value="aaa"></v-select>
-        과목 선택 : <v-select multiple v-model="subject_selected" :options="subject_options" :on-change="changedSubjectValue"></v-select>
-        조합 제외 : <v-select multiple v-model="except_selected" :options="except_options" :on-change="changedSubjectValue"></v-select>
-        <div v-show="subject_selected.length > 0 && case_count > 0">
-            <span>총 {{case_count}}개의 시간표가 존재합니다.</span>
-            <table style="width:600px;" border="1">
+        <div class="input_wrap">
+            <div class="input_title">학과 선택 :</div>
+            <v-select class="input_select" v-model="major_selected" :options="major_options" :on-change="changedMajorValue"></v-select>
+        </div>
+        <div class="input_wrap">
+            <div class="input_title">과목 선택 :</div>
+            <v-select class="input_select" multiple v-model="subject_selected" :options="subject_options" :on-change="changedSubjectValue"></v-select>
+        </div>
+        <div class="input_wrap">
+            <div class="input_title">조합 제외 :</div>
+            <v-select class="input_select" multiple v-model="except_selected" :options="except_options" :on-change="changedSubjectValue"></v-select>
+        </div>
+
+        <div>
+            <div class="top_message" v-show="major_selected == '' || major_selected == null" style="color: #ff666d; font-weight: bold;">※ 학과 및 과목을 선택해주세요.</div>
+            <div class="top_message" v-show="major_selected != '' && major_selected != null">총 <span>{{case_count}}</span>개의 시간표가 존재합니다.</div>
+            <table class="schedule" border="0">
                 <tbody>
                 <tr>
-                    <th width="5%"></th>
-                    <th width="15%" style="background: #ededed;">월</th>
-                    <th width="15%" style="background: #ededed;">화</th>
-                    <th width="15%" style="background: #ededed;">수</th>
-                    <th width="15%" style="background: #ededed;">목</th>
-                    <th width="15%" style="background: #ededed;">금</th>
+                    <td width="5%"></td>
+                    <th width="15%">월</th>
+                    <th width="15%">화</th>
+                    <th width="15%">수</th>
+                    <th width="15%">목</th>
+                    <th width="15%">금</th>
                 </tr>
                 <tr>
-                    <td style="background: #ededed;">1</td>
+                    <th>1</th>
                     <td>{{show_sub[0]}}</td>
                     <td>{{show_sub[8]}}</td>
                     <td>{{show_sub[16]}}</td>
@@ -26,7 +37,7 @@
                     <td>{{show_sub[32]}}</td>
                 </tr>
                 <tr>
-                    <td style="background: #ededed;">2</td>
+                    <th>2</th>
                     <td>{{show_sub[1]}}</td>
                     <td>{{show_sub[9]}}</td>
                     <td>{{show_sub[17]}}</td>
@@ -34,7 +45,7 @@
                     <td>{{show_sub[33]}}</td>
                 </tr>
                 <tr>
-                    <td style="background: #ededed;">3</td>
+                    <th>3</th>
                     <td>{{show_sub[2]}}</td>
                     <td>{{show_sub[10]}}</td>
                     <td>{{show_sub[18]}}</td>
@@ -43,7 +54,7 @@
                 </tr>
                 <tr>
 
-                    <td style="background: #ededed;">4</td>
+                    <th>4</th>
                     <td>{{show_sub[3]}}</td>
                     <td>{{show_sub[11]}}</td>
                     <td>{{show_sub[19]}}</td>
@@ -51,7 +62,7 @@
                     <td>{{show_sub[35]}}</td>
                 </tr>
                 <tr>
-                    <td style="background: #ededed;">5</td>
+                    <th>5</th>
                     <td>{{show_sub[4]}}</td>
                     <td>{{show_sub[12]}}</td>
                     <td>{{show_sub[20]}}</td>
@@ -59,7 +70,7 @@
                     <td>{{show_sub[36]}}</td>
                 </tr>
                 <tr>
-                    <td style="background: #ededed;">6</td>
+                    <th>6</th>
                     <td>{{show_sub[5]}}</td>
                     <td>{{show_sub[13]}}</td>
                     <td>{{show_sub[21]}}</td>
@@ -67,7 +78,7 @@
                     <td>{{show_sub[37]}}</td>
                 </tr>
                 <tr>
-                    <td style="background: #ededed;">7</td>
+                    <th>7</th>
                     <td>{{show_sub[6]}}</td>
                     <td>{{show_sub[14]}}</td>
                     <td>{{show_sub[22]}}</td>
@@ -75,7 +86,7 @@
                     <td>{{show_sub[38]}}</td>
                 </tr>
                 <tr>
-                    <td style="background: #ededed;">8</td>
+                    <th>8</th>
                     <td>{{show_sub[7]}}</td>
                     <td>{{show_sub[15]}}</td>
                     <td>{{show_sub[23]}}</td>
@@ -84,7 +95,7 @@
                 </tr>
                 </tbody>
             </table>
-            <div style="width:600px; margin :0 auto;">
+            <div class="paging_wrap">
                 <button v-show="now_case > 1" v-on:click="changeCase(now_case-1)"><</button>
                 <input style="width : 50px;" type="text" v-model="now_case" v-on:input="changeCase(now_case)">번 조합
                 <button v-show="now_case < case_count" v-on:click="changeCase(now_case+1)">></button>
@@ -494,6 +505,7 @@
              * 과 변경시 처리
              * **/
             changedMajorValue: function(value) {
+                this.major_selected = value;
                 this.time_arr = [];
                 this.show_sub = [];
                 this.subject_selected = [], // 선택강의
@@ -514,6 +526,16 @@
              * 과목 또는 조합제외 선택 시 처리
              * **/
             changedSubjectValue: function() {
+
+                //과목선택이 빈값인경우 처리
+                if(this.subject_selected.length == 0){
+                    this.time_arr = [];
+                    this.show_sub = [];
+                    this.case_count = 0; // 전체 조합번호
+                    this.now_case = 1; //현재 조합번호
+
+                    return false;
+                }
 
                 //예외날짜 확인
                 let except_arr = [];
