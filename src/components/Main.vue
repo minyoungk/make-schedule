@@ -16,8 +16,15 @@
         </div>
 
         <div>
-            <div class="top_message" v-show="major_selected == '' || major_selected == null" style="color: #ff666d; font-weight: bold;">※ 학과 및 과목을 선택해주세요.</div>
-            <div class="top_message" v-show="major_selected != '' && major_selected != null">총 <span>{{case_count}}</span>개의 시간표가 존재합니다.</div>
+            <div class="top_message" v-show="major_selected == '' || major_selected == null" style="color: #ff666d; font-weight: bold;">
+                ※ 학과 및 과목을 선택해주세요.
+            </div>
+
+
+            <div class="top_message" v-show="major_selected != '' && major_selected != null">
+                총 <span>{{case_count}}</span>개의 시간표가 존재합니다.
+                <span style="float:right; color:#FF666D; font-weight: bold;">{{all_credit}}학점</span>
+            </div>
             <table class="schedule" border="0">
                 <tbody>
                 <tr>
@@ -95,9 +102,9 @@
                 </tr>
                 </tbody>
             </table>
-            <div class="paging_wrap">
+            <div class="paging_wrap" v-show="case_count > 0">
                 <button v-show="now_case > 1" v-on:click="changeCase(now_case-1)"><</button>
-                <input style="width : 50px;" type="text" v-model="now_case" v-on:input="changeCase(now_case)">번 조합
+                <input style="width : 50px;" type="text" v-model="now_case" v-on:input="changeCase(now_case)"> <span>/ {{case_count}}</span>
                 <button v-show="now_case < case_count" v-on:click="changeCase(now_case+1)">></button>
             </div>
 
@@ -115,6 +122,7 @@
             vSelect
         },
         data: () => ({
+            all_credit : 0, // 총학점
             time_arr : [], // 경우의수 Array
             show_sub : [], // 테이블 노출 Array
             case_count : 0, // 전체 조합번호
@@ -531,6 +539,7 @@
                 if(this.subject_selected.length == 0){
                     this.time_arr = [];
                     this.show_sub = [];
+                    this.all_credit = 0;
                     this.case_count = 0; // 전체 조합번호
                     this.now_case = 1; //현재 조합번호
 
@@ -552,6 +561,8 @@
                     alert("총 학점은 21학점을 초과 할 수 없습니다.");
 
                     this.subject_selected.pop();
+                }else{
+                    this.all_credit = all_credit;
                 }
 
 
