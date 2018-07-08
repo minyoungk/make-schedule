@@ -5,21 +5,18 @@
 ## Build Setup
 
 ``` bash
-# install dependencies
+# 설치
 npm install
 
-# serve with hot reload at localhost:8080
+# dev 모드실행
 npm run dev
 ```
 
-## 추가 정보
+## 사전필요정보
 
-- 백엔드 API 서버 필요
 1. DB에 시리얼나이즈 또는 JSON 형태로 값이 저장되어있다고 가정합니다.
 2. 백엔드서버는 API요청 발생 시 json형태로 전달 합니다.
 3. 백엔드의 요청은 아래와 같이 사용 가능합니다.
-- URL 첫번째 인자값
-- DATA 두번째 인자값(JSON)
 
  ``` bash
  this.$http.get('localhost:3000/getSchedule').then(res => {
@@ -27,9 +24,7 @@ npm run dev
  });
  ``` 
 
-- 추가정보
-
-1. 백엔드에서는 아래와 같은 JSON 형식으로 값을 전달 합니다.
+4. 백엔드에서는 아래와 같은 JSON 형식으로 값을 전달 합니다.
  ``` bash
  {
      name : "컴퓨터공학부",
@@ -57,9 +52,8 @@ npm run dev
      ]
  }
  ```   
-2. time의 값은 총 3가지 강의시간 경우의수를 모두 저장한 값이라 가정 합니다.(백엔드에서 강의시간 등록시 처리를 필요로 함)
-
-3. 위 JSON에서 time에 저장되는값은 아래와 같이 시간표에서의 위치를 나타냅니다.
+5. time의 값은 총 3가지 강의시간의 경우의수를 모두 저장한 값이라 가정 합니다.(백엔드에서 강의시간 등록시 처리를 필요로 함)
+6. 위 JSON에서 time에 저장되는값은 아래와 같이 시간표에서의 위치를 나타냅니다.
 
  ``` bash
       월  화  수  목   금 
@@ -73,5 +67,4 @@ npm run dev
 8교시  8  16  24  32  40
  ```   
 
-
- 
+## 기능
