@@ -481,7 +481,10 @@
             ],
         }),
         created: function () {
-
+            //API 불러오기
+            /*this.$http.get('localhost:3000/getSchedule').then(res => {
+                this.timeTables = res.data;
+            });*/
         },
         mounted: function () {
 

@@ -14,9 +14,18 @@ npm run dev
 
 ## 추가 정보
 
-- 백엔드 API 서버 준비 필요
-1. 데이터베이스에 시리얼나이즈 또는 JSON 형태로 값이 저장되어있다고 가정합니다.
+- 백엔드 API 서버 필요
+1. DB에 시리얼나이즈 또는 JSON 형태로 값이 저장되어있다고 가정합니다.
 2. 백엔드서버는 API요청 발생 시 json형태로 전달 합니다.
+3. 백엔드의 요청은 아래와 같이 사용 가능합니다.
+- URL 첫번째 인자값
+- DATA 두번째 인자값(JSON)
+
+ ``` bash
+ this.$http.get('localhost:3000/getSchedule').then(res => {
+     this.timeTables = res.data;
+ });
+ ``` 
 
 - 추가정보
 
