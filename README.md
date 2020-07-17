@@ -2,6 +2,8 @@
 
 > 대학시간표 자동 생성 웹서비스
 
+https://youtu.be/eQ3--6ynbbU
+
 ## Build Setup
 
 ``` bash
